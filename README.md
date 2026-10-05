@@ -101,3 +101,18 @@ Al repetir el experimento del bloque 1, la prueba de una transferencia
 Por tanto, `TransaccionService` ya no necesita conocer las implementaciones
 concretas de infraestructura. La elección de esas implementaciones queda en
 el punto donde se arma el sistema.
+
+## 3. Pruebas unitarias (Bloque 3)
+
+¿Cuánto tardan en ejecutarse todas sus pruebas? ¿Cuántas líneas de TransaccionService
+tuvieron que cambiar para poder probarla? ¿Qué habría pasado si intentaran estas mismas
+pruebas en el bloque 1?
+
+pytest nos dice que todas las pruebas unitarias tardaron en ser ejecutadas 0.03s.
+
+La cantidad de líneas que tuvieron que cambiarse estan dadas por el comando de git "git diff --stat d450253..HEAD -- src/transaccion_service.py" cuyo resultado fue: 
+ src/transaccion_service.py | 96 +++++++++++++++++++++++-----------------------
+ 1 file changed, 48 insertions(+), 48 deletions(-).
+
+
+En el Bloque 1 no era posible ejecutar estas pruebas de forma aislada porque TransaccionService creaba directamente OracleRepositorio y SmsGateway. Cada prueba disparaba infraestructura concreta y no era posible sustituirla por dobles de prueba.
