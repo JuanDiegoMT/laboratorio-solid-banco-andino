@@ -1,16 +1,19 @@
-from producto_bancario import ProductoBancario
+from generable_extracto import GenerableExtracto
+from calculable_intereses import CalculableIntereses
+from pagable_cuota import PagableCuota
 
 
-class TarjetaCredito(ProductoBancario):
+class TarjetaCredito(
+    GenerableExtracto,
+    CalculableIntereses,
+    PagableCuota
+):
+
     def __init__(self, cupo):
         self._deuda = 0
         self._cupo = cupo
 
-    def depositar(self, monto):
-        pass
-
     def retirar(self, monto):
-        # Avance en efectivo
         if self._deuda + monto > self._cupo:
             raise RuntimeError("Cupo insuficiente")
 

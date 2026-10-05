@@ -7,7 +7,7 @@ from transaccion_service import TransaccionService
 from cobro_cuota_manejo import CobroCuotaManejo
 from tarjeta_credito import TarjetaCredito
 from credito_vivienda import CreditoVivienda
-
+from generador_extractos import GeneradorExtractos
 
 def main():
 
@@ -44,12 +44,12 @@ def main():
     )
 
     productos = [
+        ana,
         TarjetaCredito(3_000_000),
         CreditoVivienda(120_000_000)
     ]
 
-#falta el for
-
-
+    GeneradorExtractos().generar(productos)
+    
 if __name__ == "__main__":
     main()

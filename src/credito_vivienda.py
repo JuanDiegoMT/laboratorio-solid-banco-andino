@@ -1,15 +1,16 @@
-from producto_bancario import ProductoBancario
+from generable_extracto import GenerableExtracto
+from calculable_intereses import CalculableIntereses
+from pagable_cuota import PagableCuota
 
 
-class CreditoVivienda(ProductoBancario):
+class CreditoVivienda(
+    GenerableExtracto,
+    CalculableIntereses,
+    PagableCuota
+):
+
     def __init__(self, valor_prestamo):
         self._saldo_pendiente = valor_prestamo
-
-    def depositar(self, monto):
-        pass
-
-    def retirar(self, monto):
-        pass
 
     def calcular_intereses(self):
         return self._saldo_pendiente * 0.011
@@ -19,6 +20,6 @@ class CreditoVivienda(ProductoBancario):
 
     def generar_extracto(self):
         return (
-            f"Crédito vivienda - pendiente: "
-            f"${self._saldo_pendiente}"
+            "Crédito vivienda - pendiente: $"
+            + str(self._saldo_pendiente)
         )

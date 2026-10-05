@@ -68,3 +68,18 @@ Habría que modificar main.py para importarlo y usarlo al armar el sistema. Adem
 
 Python no detecta esto al compilar; un verificador estático como mypy o Pyright puede detectar que se pase un CDT al cobro. Eso es mejor porque el error aparece antes de ejecutar y evita que el cobro se interrumpa a mitad del proceso. Para obtener esa detección hay que correr el verificador de tipos.
 
+### Punto de control I
+
+Sí. Se creó la interfaz `GenerableExtracto`, que define únicamente el
+método `generar_extracto()`, mientras que `Cuenta`, `TarjetaCredito` y `CreditoVivienda` 
+implementan la interfaz mencionada, por lo que `GeneradorExtractos` 
+puede trabajar con los tres tipos de producto sin conocer sus demás operaciones.
+
+El generador no necesita saber si un producto permite retiros, depósitos,
+pago de cuotas o cálculo de intereses; únicamente depende de la capacidad
+que realmente necesita: generar un extracto.
+
+Aunado a lo anterior, la interfaz original `ProductoBancario` fue dividida en contratos
+más pequeños, evitando que las clases implementen métodos que no les
+aplican. Esto elimina los métodos vacíos presentes en el diseño original
+y aplica el principio de ISP.
