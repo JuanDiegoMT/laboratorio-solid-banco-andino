@@ -1,43 +1,46 @@
-from datetime import datetime
-
 from oracle_repositorio import OracleRepositorio
 from sms_gateway import SmsGateway
 
+from validador_transaccion import ValidadorTransaccion
+from calculador_comision import CalculadorComision
+from comprobante import Comprobante
+from auditoria import Auditoria
+
 
 class TransaccionService:
+
     def __init__(self):
         self.repositorio = OracleRepositorio()
         self.sms = SmsGateway()
 
-    def transferir(self, origen, destino, monto, tipo):
+        self.validador = ValidadorTransaccion()
+        self.calculador_comision = CalculadorComision()
+        self.comprobante = Comprobante()
+        self.auditoria = Auditoria()
 
-        # 1. Validación
-        if monto <= 0:
-            raise ValueError("Monto inválido")
+    def transferir(
+        self,
+        origen,
+        destino,
+        monto,
+        tipo
+    ):
 
-        if monto > 5_000_000:
-            raise ValueError("Supera el tope diario")
+        self.validador.validar(monto)
 
-        # 2. Cálculo de la comisión
-        if tipo == "MISMO_BANCO":
-            comision = 0
+        comision = self.calculador_comision.calcular(
+            monto,
+            tipo
+        )
 
-        elif tipo == "OTRO_BANCO":
-            comision = 7_500
+        origen.retirar(
+            monto + comision
+        )
 
-        elif tipo == "INTERNACIONAL":
-            comision = monto * 0.03 + 25_000
+        destino.depositar(
+            monto
+        )
 
-        else:
-            raise ValueError(
-                "Tipo de transferencia desconocido"
-            )
-
-        # 3. Movimiento del dinero
-        origen.retirar(monto + comision)
-        destino.depositar(monto)
-
-        # 4. Persistencia
         self.repositorio.guardar_transaccion(
             origen.get_numero(),
             destino.get_numero(),
@@ -45,26 +48,24 @@ class TransaccionService:
             comision
         )
 
-        # 5. Comprobante
-        print("===== BANCO ANDINO - COMPROBANTE =====")
-        print(f"Origen: {origen.get_numero()}")
-        print(f"Destino: {destino.get_numero()}")
-        print(f"Monto: ${monto}")
-        print(f"Comisión: ${comision}")
-        print("======================================")
-
-        # 6. Notificación
-        self.sms.enviar(
-            origen.get_titular(),
-            f"Transferiste ${monto} a la cuenta "
-            f"{destino.get_numero()}"
+        self.comprobante.imprimir(
+            origen,
+            destino,
+            monto,
+            comision
         )
 
-        # 7. Auditoría
-        print(
-            f"[AUDITORIA] {datetime.now()} "
-            f"{tipo} "
-            f"{origen.get_numero()} -> "
-            f"{destino.get_numero()} "
-            f"${monto}"
+        self.sms.enviar(
+            origen.get_titular(),
+            "Transferiste $"
+            + str(monto)
+            + " a la cuenta "
+            + destino.get_numero()
+        )
+
+        self.auditoria.registrar(
+            tipo,
+            origen,
+            destino,
+            monto
         )

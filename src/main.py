@@ -40,7 +40,7 @@ def main():
     )
 
     CobroCuotaManejo().cobrar_mensual(
-        [ana, luis, cdt_ana]
+        [ana, luis]
     )
 
     productos = [
@@ -48,8 +48,7 @@ def main():
         CreditoVivienda(120_000_000)
     ]
 
-    # Aquí falta en el código original que me enviaste
-    # el cuerpo del for que recorre "productos".
+#falta el for
 
 
 if __name__ == "__main__":

@@ -42,3 +42,20 @@ Se hace un archivo temporal experimento2.py (que se borró antes de enviar el co
 | Clases concretas que crea dentro de la clase              | 2     |
 | Métodos vacíos o que lanzan "no aplica"                 | 3     |
 | ¿Se puede probar`transferir` sin Oracle ni SMS?          | No    |
+
+
+
+## 2. Refactorización (Bloque 2)
+
+### Punto de control S
+
+Después de la refactorización, `TransaccionService` coordina la ejecución
+de una transferencia delegando las responsabilidades específicas a otros
+componentes.
+
+La descripción de su responsabilidad no necesita utilizar la palabra "y",
+ya que su función principal es coordinar el proceso.
+
+Si el área legal solicita modificar el formato del comprobante, solo se
+debe modificar `comprobante.py`, sin alterar la lógica de
+`TransaccionService`.
