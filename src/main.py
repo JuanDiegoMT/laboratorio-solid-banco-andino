@@ -40,7 +40,7 @@ def main():
     )
 
     CobroCuotaManejo().cobrar_mensual(
-        [ana, luis]
+        [ana, luis, cdt_ana]
     )
 
     productos = [
