@@ -19,6 +19,10 @@ class Cuenta:
 
         self._saldo += monto
 
+
+class CuentaConRetiro(Cuenta):
+    """Cuenta con saldo disponible para retiros inmediatos."""
+
     def retirar(self, monto):
         if monto > self._saldo:
             raise RuntimeError("Saldo insuficiente")

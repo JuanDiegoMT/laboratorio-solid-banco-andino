@@ -59,3 +59,12 @@ ya que su función principal es coordinar el proceso.
 Si el área legal solicita modificar el formato del comprobante, solo se
 debe modificar `comprobante.py`, sin alterar la lógica de
 `TransaccionService`.
+
+### Punto de Control O
+
+Habría que modificar main.py para importarlo y usarlo al armar el sistema. Además, se crearía un archivo nuevo para su implementación de TipoTransferencia. transaccion_service.py y los tipos existentes no requieren cambios.
+
+### Punto de Control L
+
+Python no detecta esto al compilar; un verificador estático como mypy o Pyright puede detectar que se pase un CDT al cobro. Eso es mejor porque el error aparece antes de ejecutar y evita que el cobro se interrumpa a mitad del proceso. Para obtener esa detección hay que correr el verificador de tipos.
+
