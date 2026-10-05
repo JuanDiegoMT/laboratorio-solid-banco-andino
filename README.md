@@ -83,3 +83,21 @@ Aunado a lo anterior, la interfaz original `ProductoBancario` fue dividida en co
 más pequeños, evitando que las clases implementen métodos que no les
 aplican. Esto elimina los métodos vacíos presentes en el diseño original
 y aplica el principio de ISP.
+
+### Punto de control D
+
+`TransaccionService` dejó de crear directamente sus dependencias concretas.
+Ahora las recibe mediante el constructor.
+
+En producción, `main.py` decide qué implementaciones utilizar, por ejemplo
+`OracleRepositorio` y `SmsGateway`.
+
+En las pruebas, esas dependencias pueden sustituirse por dobles como
+`RepositorioFalso` y `SmsFalso`.
+
+Al repetir el experimento del bloque 1, la prueba de una transferencia
+`OTRO_BANCO` pasó correctamente sin ejecutar Oracle ni SMS.
+
+Por tanto, `TransaccionService` ya no necesita conocer las implementaciones
+concretas de infraestructura. La elección de esas implementaciones queda en
+el punto donde se arma el sistema.

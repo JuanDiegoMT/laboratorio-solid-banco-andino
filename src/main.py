@@ -8,6 +8,12 @@ from cobro_cuota_manejo import CobroCuotaManejo
 from tarjeta_credito import TarjetaCredito
 from credito_vivienda import CreditoVivienda
 from generador_extractos import GeneradorExtractos
+from oracle_repositorio import OracleRepositorio
+from sms_gateway import SmsGateway
+from validador_transaccion import ValidadorTransaccion
+from calculador_comision import CalculadorComision
+from comprobante import Comprobante
+from auditoria import Auditoria
 
 def main():
 
@@ -30,7 +36,14 @@ def main():
         date.today() + relativedelta(months=6)
     )
 
-    servicio = TransaccionService()
+    servicio = TransaccionService(
+        OracleRepositorio(),
+        SmsGateway(),
+        ValidadorTransaccion(),
+        CalculadorComision(),
+        Comprobante(),
+        Auditoria()
+    )
 
     servicio.transferir(
         ana,
