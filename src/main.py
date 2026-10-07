@@ -14,6 +14,7 @@ from validador_transaccion import ValidadorTransaccion
 from calculador_comision import CalculadorComision
 from comprobante import Comprobante
 from auditoria import Auditoria
+from push_gateway import PushGateway
 
 def main():
 
@@ -38,7 +39,7 @@ def main():
 
     servicio = TransaccionService(
         OracleRepositorio(),
-        SmsGateway(),
+        [SmsGateway(), PushGateway()],
         ValidadorTransaccion(),
         CalculadorComision(),
         Comprobante(),

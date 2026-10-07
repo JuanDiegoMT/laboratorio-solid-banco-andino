@@ -86,7 +86,7 @@ def crear_servicio_prueba():
 
     servicio = TransaccionService(
         repositorio,
-        sms,
+        [sms],
         ValidadorTransaccion(),
         CalculadorComision(),
         comprobante,

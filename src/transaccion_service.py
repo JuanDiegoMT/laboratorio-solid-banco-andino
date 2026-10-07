@@ -1,17 +1,16 @@
-
 class TransaccionService:
 
     def __init__(
         self,
         repositorio,
-        sms,
+        notificadores,
         validador,
         calculador_comision,
         comprobante,
         auditoria
     ):
         self.repositorio = repositorio
-        self.sms = sms
+        self.notificadores = notificadores
         self.validador = validador
         self.calculador_comision = calculador_comision
         self.comprobante = comprobante
@@ -54,13 +53,18 @@ class TransaccionService:
             comision
         )
 
-        self.sms.enviar(
-            origen.get_titular(),
+        mensaje = (
             "Transferiste $"
             + str(monto)
             + " a la cuenta "
             + destino.get_numero()
         )
+
+        for notificador in self.notificadores:
+            notificador.enviar(
+                origen.get_titular(),
+                mensaje
+            )
 
         self.auditoria.registrar(
             tipo,
