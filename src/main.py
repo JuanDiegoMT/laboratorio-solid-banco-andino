@@ -16,7 +16,7 @@ from comprobante import Comprobante
 from auditoria import Auditoria
 from push_gateway import PushGateway
 from antifraude import Antifraude
-
+from postgres_repositorio import PostgresRepositorio
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
     )
 
     servicio = TransaccionService(
-        OracleRepositorio(),
+        PostgresRepositorio(),
         [SmsGateway(), PushGateway()],
         ValidadorTransaccion(),
         CalculadorComision(),

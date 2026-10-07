@@ -123,3 +123,4 @@ En el Bloque 1 no era posible ejecutar estas pruebas de forma aislada porque Tra
 | R2            | Ninguno                                     | Ninguno                         | `src/cuenta_infantil.py`     | Ninguno: las 5 pruebas pasaron. |
 | R3            | `transaccion_service.py` |`src/transaccion_service.py, src/main.py y tests/test_transaccion_service.py`              | src/push_gateway.py                           | Ninguno: las 5 pruebas pasaron.                             |
 | R4            | `src/transaccion_service.py`   | `src/transaccion_service.py, src/main.py, tests/test_transaccion_service.py`   | `src/antifraude.py`                          | Ninguno: las 5 pruebas pasaron.|
+| R5            | `src/transaccion_service.py`   | `src/main.py`   | `src/postgres_repositorio.py`                          | Ninguno: las 5 pruebas pasaron.|
