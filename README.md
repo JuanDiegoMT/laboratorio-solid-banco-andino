@@ -43,8 +43,6 @@ Se hace un archivo temporal experimento2.py (que se borró antes de enviar el co
 | Métodos vacíos o que lanzan "no aplica"                 | 3     |
 | ¿Se puede probar`transferir` sin Oracle ni SMS?          | No    |
 
-
-
 ## 2. Refactorización (Bloque 2)
 
 ### Punto de control S
@@ -71,8 +69,8 @@ Python no detecta esto al compilar; un verificador estático como mypy o Pyright
 ### Punto de control I
 
 Sí. Se creó la interfaz `GenerableExtracto`, que define únicamente el
-método `generar_extracto()`, mientras que `Cuenta`, `TarjetaCredito` y `CreditoVivienda` 
-implementan la interfaz mencionada, por lo que `GeneradorExtractos` 
+método `generar_extracto()`, mientras que `Cuenta`, `TarjetaCredito` y `CreditoVivienda`
+implementan la interfaz mencionada, por lo que `GeneradorExtractos`
 puede trabajar con los tres tipos de producto sin conocer sus demás operaciones.
 
 El generador no necesita saber si un producto permite retiros, depósitos,
@@ -110,9 +108,17 @@ pruebas en el bloque 1?
 
 pytest nos dice que todas las pruebas unitarias tardaron en ser ejecutadas 0.03s.
 
-La cantidad de líneas que tuvieron que cambiarse estan dadas por el comando de git "git diff --stat d450253..HEAD -- src/transaccion_service.py" cuyo resultado fue: 
- src/transaccion_service.py | 96 +++++++++++++++++++++++-----------------------
- 1 file changed, 48 insertions(+), 48 deletions(-).
-
+La cantidad de líneas que tuvieron que cambiarse estan dadas por el comando de git "git diff --stat d450253..HEAD -- src/transaccion_service.py" cuyo resultado fue:
+src/transaccion_service.py | 96 +++++++++++++++++++++++-----------------------
+1 file changed, 48 insertions(+), 48 deletions(-).
 
 En el Bloque 1 no era posible ejecutar estas pruebas de forma aislada porque TransaccionService creaba directamente OracleRepositorio y SmsGateway. Cada prueba disparaba infraestructura concreta y no era posible sustituirla por dobles de prueba.
+
+## 4. Requerimientos
+
+| Requerimiento | Archivos a modificar en el código original | Archivos existentes modificados | Archivos nuevos              | Test que se rompieron                                                                                                                                     |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R1 | transaccion_service.py             | `src/calculador_comision.py`    | `src/transferencia_llave.py` | Ninguno. |
+| R2 | Por definir (requerimiento 2)               | —                              | —                           | —                                                                                                                                                        |
+| R3 | Por definir (requerimiento 3)               | —                              | —                           | —                                                                                                                                                        |
+| R4 | Por definir (requerimiento 4)               | —                              | —                           | —                                                                                                                                                        |
