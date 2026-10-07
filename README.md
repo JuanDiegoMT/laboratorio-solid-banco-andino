@@ -116,9 +116,10 @@ En el Bloque 1 no era posible ejecutar estas pruebas de forma aislada porque Tra
 
 ## 4. Requerimientos
 
-| Requerimiento | Archivos a modificar en el código original | Archivos existentes modificados | Archivos nuevos              | Test que se rompieron                                                                                                                                     |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| R1 | transaccion_service.py             | `src/calculador_comision.py`    | `src/transferencia_llave.py` | Ninguno. |
-| R2 | Por definir (requerimiento 2)               | —                              | —                           | —                                                                                                                                                        |
-| R3 | Por definir (requerimiento 3)               | —                              | —                           | —                                                                                                                                                        |
-| R4 | Por definir (requerimiento 4)               | —                              | —                           | —                                                                                                                                                        |
+
+| Requerimiento | Archivos a modificar en el código original | Archivos existentes modificados | Archivos nuevos              | Test que se rompieron           |
+| ------------- | ------------------------------------------- | ------------------------------- | ---------------------------- | ------------------------------- |
+| R1            | `transaccion_service.py`                    | `src/calculador_comision.py`    | `src/transferencia_llave.py` | Ninguno: las 5 pruebas pasaron. |
+| R2            | Ninguno                                     | Ninguno                         | `src/cuenta_infantil.py`     | Ninguno: las 5 pruebas pasaron. |
+| R3            | Por definir (requerimiento 3)               | —                              | —                           | —                              |
+| R4            | Por definir (requerimiento 4)               | —                              | —                           | —                              |
