@@ -15,6 +15,9 @@ from calculador_comision import CalculadorComision
 from comprobante import Comprobante
 from auditoria import Auditoria
 from push_gateway import PushGateway
+from antifraude import Antifraude
+
+
 
 def main():
 
@@ -43,7 +46,7 @@ def main():
         ValidadorTransaccion(),
         CalculadorComision(),
         Comprobante(),
-        Auditoria()
+        [Auditoria(), Antifraude()]
     )
 
     servicio.transferir(

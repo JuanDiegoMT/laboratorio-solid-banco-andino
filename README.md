@@ -121,5 +121,5 @@ En el Bloque 1 no era posible ejecutar estas pruebas de forma aislada porque Tra
 | ------------- | ------------------------------------------- | ------------------------------- | ---------------------------- | ------------------------------- |
 | R1            | `transaccion_service.py`                    | `src/calculador_comision.py`    | `src/transferencia_llave.py` | Ninguno: las 5 pruebas pasaron. |
 | R2            | Ninguno                                     | Ninguno                         | `src/cuenta_infantil.py`     | Ninguno: las 5 pruebas pasaron. |
-| R3            | `transaccion_service.py` |`src/transaccion_service.py", src/main.py y tests/test_transaccion_service.py`              | src/push_gateway.py                           | Ninguno: las 5 pruebas pasaron.                             |
-| R4            | Por definir (requerimiento 4)               | —                              | —                           | —                              |
+| R3            | `transaccion_service.py` |`src/transaccion_service.py, src/main.py y tests/test_transaccion_service.py`              | src/push_gateway.py                           | Ninguno: las 5 pruebas pasaron.                             |
+| R4            | `src/transaccion_service.py`   | `src/transaccion_service.py, src/main.py, tests/test_transaccion_service.py`   | `src/antifraude.py`                          | Ninguno: las 5 pruebas pasaron.|

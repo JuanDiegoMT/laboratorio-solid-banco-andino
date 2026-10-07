@@ -90,7 +90,7 @@ def crear_servicio_prueba():
         ValidadorTransaccion(),
         CalculadorComision(),
         comprobante,
-        auditoria
+        [auditoria]
     )
 
     return (

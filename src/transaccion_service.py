@@ -7,14 +7,14 @@ class TransaccionService:
         validador,
         calculador_comision,
         comprobante,
-        auditoria
+        registros
     ):
         self.repositorio = repositorio
         self.notificadores = notificadores
         self.validador = validador
         self.calculador_comision = calculador_comision
         self.comprobante = comprobante
-        self.auditoria = auditoria
+        self.registros = registros
 
     def transferir(
         self,
@@ -66,9 +66,10 @@ class TransaccionService:
                 mensaje
             )
 
-        self.auditoria.registrar(
-            tipo,
-            origen,
-            destino,
-            monto
-        )
+        for registro in self.registros:
+            registro.registrar(
+                tipo,
+                origen,
+                destino,
+                monto
+            )
